@@ -28,8 +28,7 @@ public class Restaurant implements Runnable {
 
     public void makeFood() {
         synchronized(Restaurant.lock) {
-            // check if waitingForPickup is true so call method lock.wait() to lock for thread
-            // so process not to continue before waiter deliver coffee
+
             if (this.waitingForPickup) {
                 try {
                     System.out.println("Coffee Machine: Waiting for the Waiter to deliver the coffee");
@@ -39,7 +38,6 @@ public class Restaurant implements Runnable {
                 }
 
             }
-            // to inform another thread that another coffee is ready to deliver
             waitingForPickup = true;
             System.out.println("Restaurant:  Making Food Number " + foodNumber++);
             Restaurant.lock.notifyAll();
