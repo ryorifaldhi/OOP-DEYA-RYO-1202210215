@@ -15,7 +15,6 @@ public class Waiters implements Runnable {
 
     @Override
     public void run() {
-        // call getCoffee method and pending it to 5000 ms
         while (true) {
             getFood();
             try {
@@ -33,7 +32,6 @@ public class Waiters implements Runnable {
         System.out.println("Total Price: " + this.orderQty * foodPrice);
         System.out.println("==========================================================");
     }
-    // create synchronized method getCoffee
 
     public void getFood() {
         synchronized(Restaurant.getLock()) {
